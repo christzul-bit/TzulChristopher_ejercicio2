@@ -11,19 +11,17 @@ Console.WriteLine("Ingrese la hora para entrar_");
 int hora = int.Parse(Console.ReadLine());
 Console.WriteLine("Ingrese el dia de la semana de (1-7)_");
 int dia = int.Parse(Console.ReadLine());
-Console.WriteLine("Posee el carner vigente? (s/n)_");
-string vigencia = Console.ReadLine();
-Console.WriteLine("Posee autorizacion por escrita? (s/n)_");
-string autorizacion = Console.ReadLine();
 Console.WriteLine("Trae USB? (s/n)_");
 string usb = Console.ReadLine();
 Console.WriteLine("Viene acompañado de un personal de la Universidad? (s/n)_");
 string togheter = Console.ReadLine();
-if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && vigencia == "s" || vigencia == "n" && autorizacion == "s" || autorizacion == "n" && usb == "s" || usb == "n" && togheter == "s" || togheter == "n") {
+if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && usb == "s" || usb == "n" && togheter == "s" || togheter == "n") {
     switch (opcion)
     {
         case 1:
-            if(dia >= 1 && dia <= 5 && hora >= 7 && hora <= 18)
+            Console.WriteLine("Posee el carner vigente? (s/n)_");
+            string vigencia = Console.ReadLine();
+            if (dia >= 1 && dia <= 5 && hora >= 7 && hora <= 18)
             {
                 if(vigencia == "s")
                 {
@@ -32,7 +30,7 @@ if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && vigencia == "s" || vigenc
                         if(togheter == "s")
                         {
                             permiso = true;
-                            nvlPermiso = 1;
+                            nvlPermiso = 2;
                         }else
                         {
                             Console.WriteLine("Necesitas acompañamiento para entrar con USB");
@@ -40,7 +38,7 @@ if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && vigencia == "s" || vigenc
                     }else
                     {
                         permiso = true;
-                        nvlPermiso = 1;
+                        nvlPermiso = 2;
                     }
                 }else
                 {
@@ -56,13 +54,29 @@ if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && vigencia == "s" || vigenc
             if(dia >= 1 && dia <= 7 && hora >= 7 && hora <= 18)
             {
                 permiso = true;
-                nvlPermiso = 2;
+                nvlPermiso = 3;
             }else
             {
                 Console.WriteLine("Los docentes solo pueden entrar en horario permitido \n" +
                     "de lunes a viernes y entre 7 a 18 horas");
             }
             break;
+        case 3:
+            Console.WriteLine("Posee autorizacion por escrita? (s/n)_");
+            string autorizacion = Console.ReadLine();
+            if (autorizacion == "s")
+            {
+                permiso = true;
+                nvlPermiso = 4;
+            }else
+            {
+                Console.WriteLine("Requiere de autorizasion por escrita");
+            }
+            break;
+        case 4:
+
+            break;
+        default: Console.WriteLine("Opcion invalida"); break;
     }
 }else
 {
