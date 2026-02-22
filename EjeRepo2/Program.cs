@@ -1,6 +1,4 @@
 ﻿//programa con repositorio 2
-using System.ComponentModel.Design;
-
 bool permiso = false;
 int nvlPermiso = 0;
 Console.WriteLine("Ingrese su tipo de rol \n" +
@@ -95,6 +93,15 @@ if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && usb == "s" || usb == "n" 
             }
             break;
         default: Console.WriteLine("Opcion invalida"); break;
+    }
+    if(permiso == true)
+    {
+        Console.WriteLine($"Tienes permiso de entrar \n" +
+            $"Tu nivel de autorizacion es de {nvlPermiso}");
+
+    }else
+    {
+        Console.WriteLine("No etienes permiso de entrar");
     }
 }else
 {
