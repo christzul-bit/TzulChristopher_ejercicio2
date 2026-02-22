@@ -1,4 +1,6 @@
 ﻿//programa con repositorio 2
+bool permiso = false;
+int nvlPermiso = 0;
 Console.WriteLine("Ingrese su tipo de rol \n" +
     "1)Estudiante \n" +
     "2)Docente \n" +
@@ -15,4 +17,54 @@ Console.WriteLine("Posee autorizacion por escrita? (s/n)_");
 string autorizacion = Console.ReadLine();
 Console.WriteLine("Trae USB? (s/n)_");
 string usb = Console.ReadLine();
-
+Console.WriteLine("Viene acompañado de un personal de la Universidad? (s/n)_");
+string togheter = Console.ReadLine();
+if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && vigencia == "s" || vigencia == "n" && autorizacion == "s" || autorizacion == "n" && usb == "s" || usb == "n" && togheter == "s" || togheter == "n") {
+    switch (opcion)
+    {
+        case 1:
+            if(dia >= 1 && dia <= 5 && hora >= 7 && hora <= 18)
+            {
+                if(vigencia == "s")
+                {
+                    if(usb == "s")
+                    {
+                        if(togheter == "s")
+                        {
+                            permiso = true;
+                            nvlPermiso = 1;
+                        }else
+                        {
+                            Console.WriteLine("Necesitas acompañamiento para entrar con USB");
+                        }
+                    }else
+                    {
+                        permiso = true;
+                        nvlPermiso = 1;
+                    }
+                }else
+                {
+                    Console.WriteLine("Tienes que validar tu carnet");
+                }
+            }else
+            {
+                Console.WriteLine("No puede entrar fuera de horario permitido para estudiantes \n" +
+                    "de lunes a viernes y entre 7 a 18 horas.");
+            }
+            break;
+        case 2:
+            if(dia >= 1 && dia <= 7 && hora >= 7 && hora <= 18)
+            {
+                permiso = true;
+                nvlPermiso = 2;
+            }else
+            {
+                Console.WriteLine("Los docentes solo pueden entrar en horario permitido \n" +
+                    "de lunes a viernes y entre 7 a 18 horas");
+            }
+            break;
+    }
+}else
+{
+    Console.WriteLine("Uno o mas respuestas invalidas, intente otra vez");
+}
