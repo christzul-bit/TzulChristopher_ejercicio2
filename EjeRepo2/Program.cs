@@ -1,4 +1,6 @@
 ﻿//programa con repositorio 2
+using System.ComponentModel.Design;
+
 bool permiso = false;
 int nvlPermiso = 0;
 Console.WriteLine("Ingrese su tipo de rol \n" +
@@ -11,11 +13,13 @@ Console.WriteLine("Ingrese la hora para entrar_");
 int hora = int.Parse(Console.ReadLine());
 Console.WriteLine("Ingrese el dia de la semana de (1-7)_");
 int dia = int.Parse(Console.ReadLine());
+Console.WriteLine("Posee autorizacion por escrita? (s/n)_");
+string autorizacion = Console.ReadLine();
 Console.WriteLine("Trae USB? (s/n)_");
 string usb = Console.ReadLine();
 Console.WriteLine("Viene acompañado de un personal de la Universidad? (s/n)_");
 string togheter = Console.ReadLine();
-if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && usb == "s" || usb == "n" && togheter == "s" || togheter == "n") {
+if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && usb == "s" || usb == "n" && togheter == "s" || togheter == "n" && autorizacion == "s" || autorizacion == "n") {
     switch (opcion)
     {
         case 1:
@@ -27,13 +31,13 @@ if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && usb == "s" || usb == "n" 
                 {
                     if(usb == "s")
                     {
-                        if(togheter == "s")
+                        if(togheter == "s" && autorizacion == "s")
                         {
                             permiso = true;
                             nvlPermiso = 2;
                         }else
                         {
-                            Console.WriteLine("Necesitas acompañamiento para entrar con USB");
+                            Console.WriteLine("Necesitas acompañamiento y autorizacion para entrar con USB");
                         }
                     }else
                     {
@@ -62,8 +66,6 @@ if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && usb == "s" || usb == "n" 
             }
             break;
         case 3:
-            Console.WriteLine("Posee autorizacion por escrita? (s/n)_");
-            string autorizacion = Console.ReadLine();
             if (autorizacion == "s")
             {
                 permiso = true;
@@ -74,7 +76,23 @@ if (hora >= 0 && hora <= 23 && dia >= 1 && dia <= 7 && usb == "s" || usb == "n" 
             }
             break;
         case 4:
-
+            if(dia >= 1 && dia <= 5 && hora >=7 && hora <=18)
+            {
+                if (autorizacion == "s" && togheter == "s")
+                {
+                    permiso = true;
+                    nvlPermiso = 1;
+                }
+                else
+                {
+                    Console.WriteLine("Necesitas de autorizacion y supervision para entrar");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Los visitantes no pueden entrar fuera de horario escolar \n" +
+                    "de lunes a viernes de 7 a 18 horas");
+            }
             break;
         default: Console.WriteLine("Opcion invalida"); break;
     }
